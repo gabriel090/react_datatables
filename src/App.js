@@ -15,8 +15,16 @@ function App() {
     .then((json) => setData(json));
   },[]);
 
-  function search(row){
-    return rows.filter(row => row.firstName.toLowerCase().indexOf(q)> -1)
+  function search(rows){
+    const colums = rows[0] && Object.keys(rows[0])
+    return rows.filter(
+      (row) => 
+      //first filter method
+     // row.firstName.toLowerCase().indexOf(q)> -1 ||
+    //  row.lastName.toLowerCase().indexOf(q)> -1
+       colums.some((column) => row[column].toString.toLowerCase().indexOf(q.toLowerCase) > -1)
+      );
+      
   }
 
   return (
