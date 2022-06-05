@@ -15,18 +15,21 @@ function App() {
     .then((json) => setData(json));
   },[]);
 
+  function search(row){
+    return rows.filter(row => row.firstName.toLowerCase().indexOf(q)> -1)
+  }
+
   return (
     <div>
-      <div>filter goes here</div>
       <div>
-        <Datatable data ={data}/>
+        <input type = "text" value={q} onChange = {
+          (e) => setQ(e.target.value)
+        }/>
+      </div>
+      <div>
+        <Datatable data ={search(data)}/>
       </div>
     </div>
-    // <div className="App">
-    //   <header className="App-header">
-   
-    //   </header>
-    // </div>
   );
 }
 
